@@ -4,7 +4,7 @@ A plug-in alert system for [`redux-facet`](https://github.com/Bandwidth/redux-fa
 
 After you've integrated `redux-facet`, you can enhance your containers, reducers and sagas to enable them to display, create, and dismiss alerts in a structured fashion.
 
-See `/example` for an example application.
+[Check out a simple example here](http://dev.bandwidth.com/redux-facet-alerts/). The source is located in [/example](https://github.com/Bandwidth/redux-facet-alerts/tree/master/example).
 
 ## Immutable.js Support
 
