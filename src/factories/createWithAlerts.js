@@ -3,8 +3,8 @@ import { connect as defaultConnect } from 'react-redux';
 
 export default selectors => (options = { connect: defaultConnect }) => {
   const mapDispatchToProps = (dispatch, ownProps) => ({
-    createAlert: ({ message, type, persistent }) =>
-      ownProps.facetDispatch(actions.create({ message, type, persistent })),
+    createAlert: (message, attributes) =>
+      ownProps.facetDispatch(actions.create(message, attributes)),
     dismissAlert: id => ownProps.facetDispatch(actions.dismiss(id)),
     dismissAllAlerts: () => ownProps.facetDispatch(actions.dismissAll()),
   });

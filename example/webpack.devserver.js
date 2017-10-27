@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const webpackConfig = require('./webpack.config');
+const webpackConfig = require('./webpack.config')();
 
 const port = process.env.PORT || 3000;
 
