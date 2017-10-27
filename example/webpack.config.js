@@ -2,12 +2,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = {
+module.exports = ({ publicPath = '/' }) => ({
   devtool: 'cheap-module-eval-source-map',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].js',
-    publicPath: '/',
+    publicPath,
   },
   entry: [
     `webpack-dev-server/client?http://localhost:${process.env.PORT || 3000}`,
@@ -50,4 +50,4 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
   ],
-};
+});

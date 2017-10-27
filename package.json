@@ -20,7 +20,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "example": "node ./example/webpack.devserver.js",
-    "build:example": "webpack --config ./example/webpack.config.js --output-path docs ./example",
+    "build:example": "webpack --config ./example/webpack.config.js --output-path docs --env.publicPath=/redux-facet-alerts/ ./example",
     "build:library": "babel src --out-dir dist",
     "build": "npm-run-all build:*",
     "prepublish": "npm run build",
