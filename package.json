@@ -1,5 +1,5 @@
 {
-  "name": "redux-facet-alerts",
+  "name": "@bandwidth/redux-facet-alerts",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -8,7 +8,7 @@
     "dist",
     "immutable.js"
   ],
-  "npmName": "@bandwidth/redux-facet",
+  "npmName": "@bandwidth/redux-facet-alerts",
   "npmFileMap": [
     {
       "basePath": "/dist/",
