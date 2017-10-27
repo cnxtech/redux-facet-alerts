@@ -48,6 +48,7 @@ A component enhanced using `withAlerts()` will receive the following props:
 
 * `alerts`
   * Array of shape: `{ id: String, message: String, timestamp: Number, attributes: Object }`
+  * Pre-sorted, with newest alerts last
   * `id` is globally unique and ordered by creation time
   * `timestamp` is milliseconds since epoch (`Date::getTime` of creation time)
   * `attributes` is a freeform map of any additional details you want to provide
