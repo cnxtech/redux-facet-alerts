@@ -12,7 +12,7 @@ To use `redux-facet-alerts` with `immutable`, import all modules from `@bandwidt
 
 ## Documentation
 
-### Default export: `withAlerts()`
+### Default export: `withAlerts(options)`
 
 A higher-order-component which enhances a `facet` container with:
 
@@ -61,6 +61,10 @@ A component enhanced using `withAlerts()` will receive the following props:
 * `dismissAllAlerts()`
   * Action creator function which is already bound to this facet.
   * Call it to dismiss all alerts for this facet.
+
+#### Options
+
+The only parameter for `withAlerts()` is `options`. You can pass any options you'd normally pass to `react-redux`'s `connect` function to this map.
 
 ### `alertGlobalReducer`
 
@@ -140,6 +144,12 @@ To apply a facet name to an action, use `redux-facet`'s `withFacet` helper funct
 
 `redux-facet-alerts` ships with a few selectors which can be used to read alert data from the store.
 
-* `alertSelectors.selectAlertsCollection`: gets the entire global alerts collection. This is an object where keys are alert ids, and values are the alerts themselves.
-* `alertSelectors.selectAlertsListByFacetName`: gets a sorted list of alerts for the facet name specified. This will return an array of alert objects ordered by time created, where the most recent alerts are last.
-* `alertSelectors.selectSortedAlertsList`: designed to be used within a facet container, this selector takes two parameters for state: `facetState` first, then `globalState`. It returns a sorted array of alert objects, where most recent alerts are last.
+* `alertSelectors.createGlobalAlertsCollectionSelector()`
+  * A function which creates a selector. Takes no parameters.
+  * The created selector computes the entire global alerts collection. This is an object where keys are alert ids, and values are the alerts themselves.
+* `alertSelectors.createAlertIdsSelector(facetName: String)`
+  * A function which creates a selector. Takes one parameter, `facetName`.
+  * The created selector computes an array of alert ids which a facet is currently displaying.
+* `alertSelectors.createAlertsListSelector(facetName: String)`
+  * A function which creates a selector. Takes one parameter, `facetName`.
+  * The created selector computes an array of alert objects which a facet is currently displaying. They are inherently sorted from oldest to newest.

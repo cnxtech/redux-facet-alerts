@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ users, createAlert, list }) => (
+export default ({ users, createAlert, list, loading }) => (
   <div>
     <ul>
       {users.length ? (
@@ -17,6 +17,6 @@ export default ({ users, createAlert, list }) => (
         <li>No users</li>
       )}
     </ul>
-    <button onClick={list}>Fetch</button>
+    <button onClick={list}>{loading ? 'Loading' : 'Fetch'}</button>
   </div>
 );

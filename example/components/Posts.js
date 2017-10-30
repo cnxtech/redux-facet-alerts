@@ -15,6 +15,7 @@ export default ({
   dismissAllAlerts,
   create,
   edit,
+  loading,
 }) => (
   <div style={containerStyles}>
     <Alerts
@@ -23,6 +24,6 @@ export default ({
       dismissAllAlerts={dismissAllAlerts}
     />
     <h3>Create a post</h3>
-    <PostEditor draft={draft} create={create} edit={edit} />
+    <PostEditor draft={draft} create={create} edit={edit} loading={loading} />
   </div>
 );

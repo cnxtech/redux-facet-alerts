@@ -15,6 +15,7 @@ export default ({
   dismissAllAlerts,
   createAlert,
   list,
+  loading,
 }) => (
   <div style={containerStyles}>
     <Alerts
@@ -23,6 +24,11 @@ export default ({
       dismissAllAlerts={dismissAllAlerts}
     />
     <h3>Users (click to create alert)</h3>
-    <UsersList users={users} list={list} createAlert={createAlert} />
+    <UsersList
+      users={users}
+      list={list}
+      createAlert={createAlert}
+      loading={loading}
+    />
   </div>
 );

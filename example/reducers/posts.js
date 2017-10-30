@@ -1,9 +1,8 @@
 import { handleActions } from 'redux-actions';
-import { alertViewReducer } from '../../src/immutable';
 import actions from '../actions/posts';
 import { fromJS } from 'immutable';
 
-const baseReducer = handleActions(
+export default handleActions(
   {
     [actions.edit]: (state, { payload: { draft } }) =>
       state.set('draft', draft),
@@ -14,5 +13,3 @@ const baseReducer = handleActions(
   },
   fromJS({ loading: false, draft: '' }),
 );
-
-export default alertViewReducer.mount(baseReducer);

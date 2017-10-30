@@ -11,7 +11,7 @@ export default selectors => (options = { connect: defaultConnect }) => {
 
   const mapStateToProps = (state, ownProps) => {
     return {
-      alerts: selectors.selectAlertsListByFacetName(ownProps.facetName)(state),
+      alerts: selectors.createAlertsListSelector(ownProps.facetName)(state),
     };
   };
 

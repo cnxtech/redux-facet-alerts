@@ -1,3 +1,5 @@
+import { fromJS } from 'immutable';
+
 export default reducer => baseReducer => (
   state = baseReducer.defaultState || fromJS({}),
   action,

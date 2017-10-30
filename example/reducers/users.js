@@ -1,9 +1,8 @@
 import { handleActions } from 'redux-actions';
-import { alertViewReducer } from '../../src/immutable';
 import actions from '../actions/users';
 import { fromJS } from 'immutable';
 
-const baseReducer = handleActions(
+export default handleActions(
   {
     [actions.list.pending]: state => state.set('loading', true),
     [actions.list.complete]: (state, { payload: { users } }) =>
@@ -12,5 +11,3 @@ const baseReducer = handleActions(
   },
   fromJS({ loading: false, list: [] }),
 );
-
-export default alertViewReducer.mount(baseReducer);

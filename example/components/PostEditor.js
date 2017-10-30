@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ draft, create, edit }) => (
+export default ({ draft, create, edit, loading }) => (
   <form
     onSubmit={ev => {
       ev.preventDefault();
@@ -9,6 +9,6 @@ export default ({ draft, create, edit }) => (
   >
     <textarea value={draft} onChange={ev => edit(ev.target.value)} />
     <br />
-    <button type="submit">Create</button>
+    <button type="submit">{loading ? 'Loading' : 'Create'}</button>
   </form>
 );
