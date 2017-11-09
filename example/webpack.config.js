@@ -23,7 +23,18 @@ module.exports = ({ publicPath = '/' } = { publicPath: '/' }) => ({
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2017', 'react', 'stage-0'],
+            presets: [
+              [
+                'env',
+                {
+                  targets: {
+                    node: '6.10',
+                  },
+                },
+              ],
+              'react',
+            ],
+            plugins: ['transform-object-rest-spread'],
           },
         },
       },
