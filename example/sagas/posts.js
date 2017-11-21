@@ -4,14 +4,15 @@ import { facetSaga } from '@bandwidth/redux-facet/immutable';
 import { alertActions } from '../../src/immutable';
 import actions from '../actions/posts';
 
-export default facetSaga('posts', actions.create.pending.toString(), function*(
-  channel,
-) {
-  function* handleCreatePending(action) {
-    yield call(delay, 1000);
-    yield put(channel, actions.create.complete({ post: action.payload.post }));
-    yield put(channel, alertActions.create('Post created'));
-  }
+function* handleCreatePending(action) {
+  yield call(delay, 1000);
+  yield put(actions.create.complete({ post: action.payload.post }));
+  yield put(alertActions.create('Post created'));
+}
 
-  yield takeEvery(channel, handleCreatePending);
-});
+export default function*() {
+  yield takeEvery(
+    actions.create.pending.toString(),
+    facetSaga(handleCreatePending),
+  );
+}
