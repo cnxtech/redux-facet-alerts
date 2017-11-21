@@ -34,7 +34,7 @@ module.exports = ({ publicPath = '/' } = { publicPath: '/' }) => ({
               ],
               'react',
             ],
-            plugins: ['transform-object-rest-spread'],
+            plugins: ['transform-object-rest-spread', 'transform-runtime'],
           },
         },
       },

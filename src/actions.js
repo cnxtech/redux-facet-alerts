@@ -5,19 +5,22 @@ const generateAlertId = timestamp =>
   `alert-${timestamp}-${uuid().substring(0, 18)}`;
 const createTimestamp = () => new Date().getTime();
 
-export default createActions(
-  {
-    CREATE: (message, attributes) => {
-      const timestamp = createTimestamp();
-      return {
-        id: generateAlertId(timestamp),
-        timestamp,
-        message,
-        attributes,
-      };
-    },
-    DISMISS: id => ({ id }),
-    DISMISS_ALL: () => ({}),
+const actions = createActions({
+  CREATE_FACET_ALERT: (message, attributes) => {
+    const timestamp = createTimestamp();
+    return {
+      id: generateAlertId(timestamp),
+      timestamp,
+      message,
+      attributes,
+    };
   },
-  { namespace: '@@redux-facet-alerts' },
-);
+  DISMISS_FACET_ALERT: id => ({ id }),
+  DISMISS_ALL_FACET_ALERTS: () => ({}),
+});
+
+export default {
+  create: actions.createFacetAlert,
+  dismiss: actions.dismissFacetAlert,
+  dismissAll: actions.dismissAllFacetAlerts,
+};
