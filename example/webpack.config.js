@@ -28,7 +28,7 @@ module.exports = ({ publicPath = '/' } = { publicPath: '/' }) => ({
                 'env',
                 {
                   targets: {
-                    node: '6.10',
+                    browsers: ['latest 2 versions'],
                   },
                 },
               ],
