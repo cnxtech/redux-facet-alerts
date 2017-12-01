@@ -37,10 +37,12 @@
   "peerDependencies": {
     "@bandwidth/redux-facet": "^0.3.0",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6"
   },
   "dependencies": {
     "immutable": "^3.8.2",
+    "lodash": "^4.17.4",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",

@@ -1,7 +1,10 @@
 import actions from '../actions';
 import { connect as defaultConnect } from 'react-redux';
+import { pick, defaultsDeep } from 'lodash';
 
-export default selectors => (options = { connect: defaultConnect }) => {
+export default selectors => options => {
+  const defaultedOptions = defaultsDeep(options, { connect: defaultConnect });
+
   const mapDispatchToProps = (dispatch, ownProps) => ({
     createAlert: (message, attributes) =>
       ownProps.facetDispatch(actions.create(message, attributes)),
@@ -15,12 +18,12 @@ export default selectors => (options = { connect: defaultConnect }) => {
     };
   };
 
-  return options.connect(
+  return defaultedOptions.connect(
     mapStateToProps,
     mapDispatchToProps,
     null,
     // pass through connect options from HOC options
-    _.pick(options, [
+    pick(defaultedOptions, [
       'pure',
       'areStatesEqual',
       'areOwnPropsEqual',
