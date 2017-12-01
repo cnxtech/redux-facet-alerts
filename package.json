@@ -34,8 +34,10 @@
   },
   "author": "",
   "license": "ISC",
+  "peerDependencies": {
+    "@bandwidth/redux-facet": "^0.3.0"
+  },
   "dependencies": {
-    "@bandwidth/redux-facet": "^0.3.0",
     "immutable": "^3.8.2",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
