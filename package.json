@@ -35,7 +35,7 @@
   "author": "Grant Forrest <gaforres@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "@bandwidth/redux-facet": "^0.3.0",
+    "@bandwidth/redux-facet": "^0.3.3",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6"
