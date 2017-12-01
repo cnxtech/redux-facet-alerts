@@ -32,8 +32,8 @@
       "git add"
     ]
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Grant Forrest <gaforres@gmail.com>",
+  "license": "MIT",
   "peerDependencies": {
     "@bandwidth/redux-facet": "^0.3.0",
     "react": "^16.0.0",
