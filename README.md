@@ -134,7 +134,7 @@ The action creators are:
 
 #### NOTE: facet name metadata is required
 
-`redux-facet-alerts` does not apply facet names to actions created by its action creators. It's up to you to apply them if necessary. If you use the action creators provided to your component by `withAlerts`, these will be applied automatically. Likewise, if you use these action creators in a saga which is created with `facetSaga` and `put` the actions to the provided `channel`, the facet name will be applied.
+`redux-facet-alerts` does not apply facet names to actions created by its action creators. It's up to you to apply them if necessary. If you use the action creators provided to your component by `withAlerts`, these will be applied automatically. Likewise, if you use these action creators in a saga which is created with `facetSaga`, the facet name will be applied.
 
 You may purposefully omit the facet name metadata on the `dismissAll` action creator to dismiss every alert in your application. However, none of the other action creators will currently do anything useful if no facet name is provided.
 
