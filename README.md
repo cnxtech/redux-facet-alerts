@@ -110,11 +110,15 @@ To apply a facet name to an action, use `redux-facet`'s `withFacet` helper funct
 
 ### `alertSelectors`
 
-`redux-facet-alerts` ships with a few selectors which can be used to read alert data from the store.
+`redux-facet-alerts` ships with a few selector creators which can be used to read alert data from the store.
 
-* `alertSelectors.createAlertsSelector(facetName: String)`
+* `alertSelectors.createAlertsSelector(facetName: String): alertsSelector(state)`
   * A function which creates a selector. Takes one parameter, `facetName`.
   * The created selector returns a collection of alerts, where the key is the alert id, and the value is the alert.
-* `alertSelectors.createAlertsListSelector(facetName: String)`
+* `alertSelectors.createAlertsListSelector(facetName: String): alertsListSelector(state)`
   * A function which creates a selector. Takes one parameter, `facetName`.
   * The created selector computes an array of alert objects which a facet is currently displaying. They are inherently sorted from oldest to newest.
+* `alertSelectors.createAlertSelectorCreator(alertId: String): alertSelectorCreator(facetName: String): alertSelector(state)`
+  * A factory function which creates a facet selector creator for the alert specified by id.
+  * The returned selector creator takes a facet name and returns a selector for the alert.
+  * The selector will retrieve the alert from the facet's alert state.

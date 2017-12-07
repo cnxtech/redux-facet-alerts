@@ -16,6 +16,9 @@ const createAlertsSelector = facetName =>
 const createAlertsListSelector = facetName =>
   createSelector(createAlertsSelector(facetName), utils.toSortedList);
 
+const createAlertSelectorCreator = alertId => facetName =>
+  createSelector(createAlertsSelector(facetName), alerts => alerts[alertId]);
+
 const selectAlertsListFromFacetState = createSelector(
   selectAlertsFromFacetState,
   utils.toSortedList,
@@ -24,6 +27,7 @@ const selectAlertsListFromFacetState = createSelector(
 export default {
   createAlertsSelector,
   createAlertsListSelector,
+  createAlertSelectorCreator,
 
   selectAlertsFromFacetState,
   selectAlertsListFromFacetState,
