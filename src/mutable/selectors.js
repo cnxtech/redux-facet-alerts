@@ -1,39 +1,29 @@
 import { createSelector } from 'reselect';
 import { selectors } from '@bandwidth/redux-facet';
-import globalReducer from './alertGlobalReducer';
 import facetReducer from './alertReducer';
+import * as utils from '../selectorUtils';
 import _ from 'lodash';
 
-const selectGlobalAlertsCollection = () => state => state[globalReducer.key];
+const selectAlertsFromFacetState = facetState => facetState[facetReducer.key];
 
-const selectAlertIds = facetName =>
+const createAlertsSelector = facetName =>
   createSelector(
     selectors.createFacetStateSelector(facetName),
-    facetState => facetState[facetReducer.key],
+    selectAlertsFromFacetState,
   );
 
-const selectAlertsList = facetName =>
-  createSelector(
-    selectGlobalAlertsCollection(),
-    selectAlertIds(facetName),
-    (alerts, ids) =>
-      ids.map(id => alerts[id]).filter(alert => !_.isUndefined(alert)),
-  );
+const createAlertsListSelector = facetName =>
+  createSelector(createAlertsSelector(facetName), utils.toSortedList);
+
+const selectAlertsListFromFacetState = createSelector(
+  selectAlertsFromFacetState,
+  utils.toSortedList,
+);
 
 export default {
-  /**
-     * @deprecated, prefer #createGlobalAlertsCollectionSelector as it is more idiomatic
-     */
-  selectGlobalAlertsCollection,
-  createGlobalAlertsCollectionSelector: selectGlobalAlertsCollection,
-  /**
-     * @deprecated, prefer #createAlertIdsSelector as it is more idiomatic
-     */
-  selectAlertIds,
-  createAlertIdsSelector: selectAlertIds,
-  /**
-     * @deprecated, prefer #createAlertsListSelector as it is more idiomatic
-     */
-  selectAlertsList,
-  createAlertsListSelector: selectAlertsList,
+  createAlertsSelector,
+  createAlertsListSelector,
+
+  selectAlertsFromFacetState,
+  selectAlertsListFromFacetState,
 };

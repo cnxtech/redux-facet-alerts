@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux-immutable';
-import { alertGlobalReducer, alertViewReducer } from '../../src/immutable';
+import { alertReducer } from '../../src/immutable';
 import { combineFacetReducers } from '@bandwidth/redux-facet/immutable';
 import posts from './posts';
 import users from './users';
@@ -22,14 +22,12 @@ export default combineReducers({
    */
   [combineFacetReducers.key]: combineFacetReducers({
     users: combineReducers({
-      [alertViewReducer.key]: alertViewReducer,
+      [alertReducer.key]: alertReducer,
     }),
     posts: combineReducers({
-      [alertViewReducer.key]: alertViewReducer,
+      [alertReducer.key]: alertReducer,
     }),
   }),
-  // be sure to include the global alert collection!
-  [alertGlobalReducer.key]: alertGlobalReducer,
 
   // our 'traditional' redux data reducers
   posts,

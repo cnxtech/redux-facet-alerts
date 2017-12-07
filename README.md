@@ -24,18 +24,18 @@ A higher-order-component which enhances a `facet` container with:
 Compose `withAlerts()` after `facet()` before passing in your component:
 
 ```javascript
-facet('users', mapStateToProps, mapDispatchToProps)(
+facet('users', mapDispatchToProps)(
   withAlerts()(
     ViewComponent
   ),
 );
 ```
 
-To make things more idiomatic, it's recommented to use [`recompose`](https://github.com/acdlite/recompose):
+To make things more idiomatic, it's recommented to use the `compose` export from `redux-facet`:
 
 ```javascript
 compose(
-  facet('users', mapStateToProps, mapDispatchToProps),
+  facet('users', mapDispatchToProps),
   withAlerts(),
 )(ViewComponent);
 ```
@@ -62,41 +62,9 @@ A component enhanced using `withAlerts()` will receive the following props:
   * Action creator function which is already bound to this facet.
   * Call it to dismiss all alerts for this facet.
 
-#### Options
+### `alertReducer`
 
-The only parameter for `withAlerts()` is `options`. You can pass any options you'd normally pass to `react-redux`'s `connect` function to this map.
-
-### `alertGlobalReducer`
-
-Include this reducer at the root of your store to keep track of the alerts for the application.
-
-This reducer listens to all alert-related actions for every facet and maintains the normalized global collection which facets reference when looking up the alerts they need.
-
-#### Basic usage
-
-To mount it manually, please reference the `.key` property to mount it at the correct location in the root of your main reducer, or the library will not work.
-
-```javascript
-const globalReducer = combineReducers({
-  foo: fooReducer,
-  bar: barReducer,
-  [alertGlobalReducer.key]: alertGlobalReducer,
-});
-```
-
-#### Automatic usage
-
-> Note: `mount` will not work with `combineReducers`, since `combineReducers` ignores any 'extra' keys that get added to the resulting map.
-
-You can mount the `alertGlobalReducer` automatically into your base reducer using its `.mount(baseReducer: Function)` function. By calling it with your root reducer, it will return a new reducer and mount itself at the correct key. Your base reducer must return a state which is an object so that a key can be created for the alert reducer.
-
-```javascript
-const enhancedGlobalReducer = alertGlobalReducer.mount(globalReducer);
-```
-
-### `alertViewReducer`
-
-Include this reducer within your facet reducers to give them access to their own views of the global alert state (in other words, to 'enable' alerts for that facet).
+Include this reducer within your facet reducers to keep track of alerts for the facet. Without this reducer, the library will not work.
 
 This reducer expects to be mounted within a facet reducer. If this is done correctly, it will therefore only listen to alert actions related to its facet. It keeps track of which alerts should be visible in the facet.
 
@@ -130,7 +98,7 @@ The action creators are:
 
 * `alertActions.create(message: String, attributes: Object)`: creates an alert with the specified message and a set of optional freeform attributes. Attributes do not affect any library behavior, but they will be present on your alerts when you render them. A common use of attributes might be to attach a `priority` or `type` value to your alerts so that they can be rendered differently.
 * `alertActions.dismiss(id: String)`: dismisses the alert specified by the id.
-* `alertActions.dismissAll()`: dismisses all alerts. *When a facet name is applied to this action, it will only dismiss alerts in that facet. If no facet name is applied, all alerts will be dismissed globally.*
+* `alertActions.dismissAll()`: dismisses all alerts in the facet.
 
 #### NOTE: facet name metadata is required
 
@@ -144,12 +112,9 @@ To apply a facet name to an action, use `redux-facet`'s `withFacet` helper funct
 
 `redux-facet-alerts` ships with a few selectors which can be used to read alert data from the store.
 
-* `alertSelectors.createGlobalAlertsCollectionSelector()`
-  * A function which creates a selector. Takes no parameters.
-  * The created selector computes the entire global alerts collection. This is an object where keys are alert ids, and values are the alerts themselves.
-* `alertSelectors.createAlertIdsSelector(facetName: String)`
+* `alertSelectors.createAlertsSelector(facetName: String)`
   * A function which creates a selector. Takes one parameter, `facetName`.
-  * The created selector computes an array of alert ids which a facet is currently displaying.
+  * The created selector returns a collection of alerts, where the key is the alert id, and the value is the alert.
 * `alertSelectors.createAlertsListSelector(facetName: String)`
   * A function which creates a selector. Takes one parameter, `facetName`.
   * The created selector computes an array of alert objects which a facet is currently displaying. They are inherently sorted from oldest to newest.

@@ -11,5 +11,8 @@ function* handleListPending(action) {
 }
 
 export default function*() {
-  yield takeEvery(actions.list.pending.toString(), handleListPending);
+  yield takeEvery(
+    actions.list.pending.toString(),
+    facetSaga(handleListPending),
+  );
 }

@@ -2,19 +2,22 @@ import { handleActions } from 'redux-actions';
 import actions from '../actions';
 import createMount from './createMount';
 import createMount from './createMount';
+import { omit } from 'lodash';
 
 import { FACET_REDUCER_KEY } from '../constants';
 
 const reducer = handleActions(
   {
-    [actions.create]: (state, { payload: { id } }) => state.push(id),
+    [actions.create]: (state, { payload }) => ({
+      ...state,
+      [payload.id]: payload,
+    }),
 
-    [actions.dismiss]: (state, { payload: { id } }) =>
-      state.filterNot(alertId => alertId === id),
+    [actions.dismiss]: (state, { payload: { id } }) => omit(state, id),
 
-    [actions.dismissAll]: () => [],
+    [actions.dismissAll]: () => {},
   },
-  [],
+  {},
 );
 
 reducer.key = FACET_REDUCER_KEY;

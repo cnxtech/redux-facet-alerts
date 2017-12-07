@@ -1,4 +1,5 @@
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import facet from '@bandwidth/redux-facet/immutable';
 import withAlerts from '../../src/immutable';
@@ -8,14 +9,14 @@ import userSelectors from '../selectors/users';
 import View from '../components/Users';
 
 export default compose(
-  facet(
-    'users',
+  connect(
     createStructuredSelector({
       users: userSelectors.selectList(),
       loading: userSelectors.selectLoading(),
     }),
-    dispatch =>
-      bindActionCreators({ list: userActions.list.pending }, dispatch),
+  ),
+  facet('users', dispatch =>
+    bindActionCreators({ list: userActions.list.pending }, dispatch),
   ),
   withAlerts(),
 )(View);
