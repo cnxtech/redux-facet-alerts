@@ -1,7 +1,6 @@
 import { handleActions } from 'redux-actions';
 import actions from '../actions';
 import createMount from './createMount';
-import createMount from './createMount';
 import { omit } from 'lodash';
 
 import { FACET_REDUCER_KEY } from '../constants';

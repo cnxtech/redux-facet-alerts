@@ -35,13 +35,12 @@
   "author": "Grant Forrest <gaforres@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "@bandwidth/redux-facet": "^1.0.0-beta2",
+    "@bandwidth/redux-facet": "^1.0.0-beta3",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6"
   },
   "dependencies": {
-    "@bandwidth/redux-facet": "^1.0.0-beta2",
     "immutable": "^3.8.2",
     "lodash": "^4.17.4",
     "recompose": "^0.26.0",
@@ -50,6 +49,7 @@
     "reselect": "^3.0.1"
   },
   "devDependencies": {
+    "@bandwidth/redux-facet": "^1.0.0-beta3",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
