@@ -12,7 +12,7 @@ To use `redux-facet-alerts` with `immutable`, import all modules from `@bandwidt
 
 ## Documentation
 
-### Default export: `withAlerts(options)`
+### Default export: `withAlerts()`
 
 A higher-order-component which enhances a `facet` container with:
 
