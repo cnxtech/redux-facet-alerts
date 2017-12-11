@@ -14,7 +14,7 @@ const reducer = handleActions(
 
     [actions.dismiss]: (state, { payload: { id } }) => omit(state, id),
 
-    [actions.dismissAll]: () => {},
+    [actions.dismissAll]: () => ({}),
   },
   {},
 );
